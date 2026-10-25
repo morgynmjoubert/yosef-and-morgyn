@@ -1,0 +1,399 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Yosef &amp; Morgyn</title>
+<meta name="description" content="Yosef and Morgyn's wedding, Monday, December 28, 2026 in Oxford, Massachusetts. Schedule, dinner menu and RSVP.">
+<meta name="theme-color" content="#1F2A35">
+<meta property="og:title" content="Yosef &amp; Morgyn">
+<meta property="og:description" content="Monday · December 28 · 2026 · Kindly RSVP by November 28, 2026">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Great+Vibes&display=swap">
+<style>
+/* Layout: the flyer, unfolded. Phone = photo hero with the flyer's text over it, then the day in sections.
+   Desktop = sticky photo on the right, scrolling invitation on the left. Single dusk palette, like the flyer. */
+:root {
+  --dusk: #1F2A35;        /* page ground, a shade under the flyer's slate */
+  --slate: #2C3A47;       /* panels and fields */
+  --peach: #D4956A;       /* rules, dots, accents */
+  --peach-lt: #F3C9A8;    /* small accent text */
+  --cream: #E8D5BE;       /* body text */
+  --white: #FFFFFF;       /* names and headings */
+  --line: #7E8C99;        /* field borders, 3:1 on slate */
+  --error: #FFB4A8;
+  --script: "Great Vibes", "Snell Roundhand", "Apple Chancery", cursive;
+  --serif: "EB Garamond", "Garamond", "Iowan Old Style", Georgia, serif;
+  --hero-h: min(100svh, 1000px);
+  color-scheme: dark;
+}
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--dusk);
+  color: var(--cream);
+  font-family: var(--serif);
+  font-size: 1.125rem;
+  line-height: 1.6;
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+[hidden] { display: none !important; }
+img { max-width: 100%; display: block; }
+a { color: var(--peach-lt); text-underline-offset: 3px; }
+a:hover { color: var(--white); }
+:focus-visible { outline: 2px solid var(--peach-lt); outline-offset: 3px; border-radius: 2px; }
+
+/* ---------- layout ---------- */
+.layout { position: relative; }
+.photo { position: absolute; inset: 0 0 auto 0; height: var(--hero-h); margin: 0; overflow: hidden; }
+.photo img { width: 100%; height: 100%; object-fit: cover; object-position: 48% 100%; }
+.photo::after {
+  content: ""; position: absolute; inset: 0;
+  background: linear-gradient(to bottom,
+    rgba(31,42,53,.88) 0%, rgba(31,42,53,.80) 30%, rgba(31,42,53,.35) 52%,
+    rgba(31,42,53,0) 66%, rgba(31,42,53,0) 90%, var(--dusk) 100%);
+}
+.content {
+  position: relative;
+  padding-left: max(20px, env(safe-area-inset-left, 0px));
+  padding-right: max(20px, env(safe-area-inset-right, 0px));
+  max-width: 640px;
+}
+.hero { min-height: var(--hero-h); padding-block: 56px 32px; }
+
+@media (min-width: 1000px) {
+  .layout { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr); }
+  .photo { position: sticky; top: 0; height: 100svh; grid-column: 2; grid-row: 1; }
+  .photo::after { background: linear-gradient(to right, var(--dusk) 0%, rgba(31,42,53,0) 14%); }
+  .content { grid-column: 1; grid-row: 1; justify-self: end; width: 100%; max-width: 620px;
+    padding-left: max(48px, env(safe-area-inset-left, 0px)); padding-right: 48px; }
+  .hero { min-height: auto; padding-block: 96px 24px; }
+}
+
+/* ---------- type ---------- */
+.accent { width: 80px; height: 3px; background: var(--peach); border: 0; margin: 0 0 18px; }
+.invite { font-style: italic; font-size: clamp(1.2rem, 4.6vw, 1.6rem); margin: 0; color: var(--cream); }
+h1 {
+  font-family: var(--script); font-weight: 400; color: var(--white);
+  font-size: clamp(4.2rem, 18vw, 7.6rem); line-height: 1.04; margin: 22px 0 10px;
+  letter-spacing: 0;
+}
+h1 span { display: block; }
+.date { font-weight: 600; color: var(--peach-lt); font-size: clamp(1.2rem, 4.6vw, 1.55rem); margin: 0; }
+.place-line { margin: 6px 0 0; font-style: italic; }
+
+section { padding-block: 56px 8px; }
+h2 {
+  font-family: var(--serif); font-weight: 500; font-style: italic; color: var(--white);
+  font-size: clamp(2rem, 7vw, 2.6rem); line-height: 1.15; margin: 0 0 8px; text-wrap: balance;
+}
+.kicker { margin: 0 0 28px; color: var(--peach-lt); font-style: italic; }
+.label { font-size: .82rem; letter-spacing: .14em; text-transform: uppercase; font-weight: 600; color: var(--peach-lt); }
+
+/* ---------- schedule ---------- */
+.timeline { list-style: none; margin: 0; padding: 0 0 0 34px; border-left: 2px solid rgba(212,149,106,.7); display: grid; gap: 32px; }
+.timeline li { position: relative; }
+.timeline li::before {
+  content: ""; position: absolute; left: -42px; top: 12px; width: 14px; height: 14px;
+  border-radius: 50%; background: var(--peach);
+}
+.time { font-style: italic; color: var(--peach-lt); font-size: 1.2rem; margin: 0; }
+.event { font-weight: 700; color: var(--white); font-size: 1.65rem; line-height: 1.2; margin: 0 0 2px; }
+.venue { font-style: italic; margin: 0; }
+.directions { display: inline-block; margin-top: 6px; font-size: .95rem; letter-spacing: .06em; }
+
+/* ---------- menu ---------- */
+.courses { list-style: none; margin: 0 0 40px; padding: 0; display: grid; gap: 18px; }
+.courses li { display: grid; grid-template-columns: 7.5rem minmax(0, 1fr); gap: 4px 16px; align-items: baseline; }
+.courses .label { padding-top: 2px; }
+.courses p { margin: 0; }
+.course-name { color: var(--white); font-weight: 600; }
+.note { font-style: italic; margin: 0 0 40px; padding: 16px 20px; background: var(--slate); border-left: 3px solid var(--peach); }
+h3 { font-weight: 600; color: var(--white); font-size: 1.3rem; margin: 0 0 16px; }
+.dishes { list-style: none; margin: 0 0 40px; padding: 0; columns: 1; column-gap: 36px; }
+.dishes li { break-inside: avoid; margin: 0 0 14px; }
+.dish { color: var(--white); font-weight: 500; display: block; line-height: 1.3; }
+.desc { font-style: italic; font-size: 1rem; line-height: 1.45; }
+@media (min-width: 640px) and (max-width: 999px), (min-width: 1300px) { .dishes.two-col { columns: 2; } }
+@media (max-width: 420px) { .courses li { grid-template-columns: minmax(0, 1fr); } }
+
+/* ---------- RSVP ---------- */
+form { display: grid; gap: 24px; margin-top: 8px; }
+.field { display: grid; gap: 8px; }
+label, legend { color: var(--white); font-weight: 500; }
+.hint { font-size: .95rem; font-style: italic; color: var(--cream); margin: -4px 0 0; }
+input[type="text"], select, textarea {
+  font: inherit; color: var(--white); background: var(--slate);
+  border: 1px solid var(--line); border-radius: 6px; padding: 12px 14px; width: 100%;
+}
+textarea { min-height: 7rem; resize: vertical; }
+select { appearance: none; background-image: linear-gradient(45deg, transparent 50%, var(--peach-lt) 50%), linear-gradient(135deg, var(--peach-lt) 50%, transparent 50%);
+  background-position: calc(100% - 22px) 55%, calc(100% - 16px) 55%; background-size: 6px 6px; background-repeat: no-repeat; padding-right: 44px; }
+input:focus-visible, select:focus-visible, textarea:focus-visible { outline: 2px solid var(--peach-lt); outline-offset: 1px; border-color: var(--peach-lt); }
+fieldset { border: 0; margin: 0; padding: 0; display: grid; gap: 10px; }
+legend { padding: 0; margin-bottom: 10px; }
+.choices { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr)); gap: 10px; }
+.choice { position: relative; }
+.choice input { position: absolute; opacity: 0; inset: 0; width: 100%; height: 100%; margin: 0; cursor: pointer; }
+.choice span {
+  display: block; padding: 14px 16px; border: 1px solid var(--line); border-radius: 6px;
+  background: var(--slate); color: var(--cream); cursor: pointer;
+}
+.choice input:checked + span { border-color: var(--peach); background: #3A3A3F; color: var(--white); box-shadow: inset 0 0 0 1px var(--peach); }
+.choice input:focus-visible + span { outline: 2px solid var(--peach-lt); outline-offset: 2px; }
+.trap { position: absolute; left: -10000px; width: 1px; height: 1px; overflow: hidden; }
+button {
+  font: inherit; font-weight: 600; letter-spacing: .04em; color: #1F2A35; background: var(--peach-lt);
+  border: 0; border-radius: 6px; padding: 14px 28px; cursor: pointer; justify-self: start;
+}
+button:hover { background: var(--white); }
+button[disabled] { opacity: .65; cursor: progress; }
+.status { margin: 0; min-height: 1.6em; }
+.status.error { color: var(--error); }
+.thanks { padding: 24px; background: var(--slate); border-left: 3px solid var(--peach); }
+.thanks p { margin: 0; }
+.thanks .big { font-family: var(--script); color: var(--white); font-size: 2.6rem; line-height: 1.1; margin-bottom: 8px; }
+
+footer { padding-block: 64px 48px; color: var(--cream); font-style: italic; }
+footer .names { font-family: var(--script); font-style: normal; color: var(--white); font-size: 2.2rem; display: block; line-height: 1.2; }
+
+@media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
+</style>
+</head>
+<body>
+<div class="layout">
+  <figure class="photo">
+    <img src="images/beach-1000.jpg"
+         srcset="images/beach-1000.jpg 1000w, images/beach-1800.jpg 1800w"
+         sizes="(min-width: 1000px) 52vw, 100vw"
+         width="1800" height="2157"
+         alt="Yosef kneeling to propose to Morgyn on the beach in front of Haystack Rock at dusk">
+  </figure>
+
+  <main class="content">
+    <header class="hero">
+      <hr class="accent">
+      <p class="invite">You are invited to the wedding of</p>
+      <h1><span>Yosef</span><span>&amp; Morgyn</span></h1>
+      <p class="date">Monday · December 28 · 2026</p>
+      <p class="place-line">Oxford &amp; Worcester, Massachusetts</p>
+    </header>
+
+    <section id="schedule" aria-labelledby="schedule-h">
+      <hr class="accent">
+      <h2 id="schedule-h">Schedule</h2>
+      <p class="kicker">Monday, December 28, 2026</p>
+      <ol class="timeline">
+        <li>
+          <p class="time">5:00 pm</p>
+          <p class="event">Ceremony</p>
+          <p class="venue">Oxford Town Hall<br>325 Main St, Oxford, MA</p>
+          <a class="directions" href="https://www.google.com/maps/search/?api=1&amp;query=Oxford+Town+Hall+325+Main+St+Oxford+MA" target="_blank" rel="noopener">Directions</a>
+        </li>
+        <li>
+          <p class="time">6:00 pm</p>
+          <p class="event">Photos</p>
+          <p class="venue">Oxford Common Bandstand<br>75A E Main St, Oxford, MA</p>
+          <a class="directions" href="https://www.google.com/maps/search/?api=1&amp;query=Oxford+Common+Bandstand+75A+E+Main+St+Oxford+MA" target="_blank" rel="noopener">Directions</a>
+        </li>
+        <li>
+          <p class="time">7:00 pm</p>
+          <p class="event">Dinner</p>
+          <p class="venue">Bocado Tapas Wine Bar<br>82 Winter St, Worcester, MA</p>
+          <a class="directions" href="https://www.google.com/maps/search/?api=1&amp;query=Bocado+Tapas+Wine+Bar+82+Winter+St+Worcester+MA" target="_blank" rel="noopener">Directions</a>
+        </li>
+      </ol>
+    </section>
+
+    <section id="menu" aria-labelledby="menu-h">
+      <hr class="accent">
+      <h2 id="menu-h">Dinner Menu</h2>
+      <p class="kicker">Seated family-style dinner at Bocado Tapas Wine Bar, Bodega Room</p>
+
+      <ul class="courses">
+        <li><span class="label">To start</span><p><span class="course-name">Cheese &amp; charcuterie</span><br><span class="desc">Gourmet Spanish cheeses and cured, sliced meats</span></p></li>
+        <li><span class="label">Salad</span><p><span class="course-name">Madalena salad or Mediterranean salad</span></p></li>
+        <li><span class="label">Tapas</span><p><span class="course-name">Five tapas</span>, shared at each table</p></li>
+        <li><span class="label">Paella</span><p><span class="course-name">One paella</span>, shared at each table</p></li>
+        <li><span class="label">Dessert</span><p><span class="course-name">Churros with chocolate dipping sauce or seasonal bread pudding</span></p></li>
+      </ul>
+
+      <p class="note">Final selections are still being chosen from the options below.</p>
+
+      <h3>Tapas options</h3>
+      <ul class="dishes two-col">
+        <li><span class="dish">Fried Olives</span><span class="desc">saffron allioli</span></li>
+        <li><span class="dish">Olives</span><span class="desc">marinated mixed olives</span></li>
+        <li><span class="dish">Mozzarella Rice Balls</span><span class="desc">basil allioli</span></li>
+        <li><span class="dish">Pork Meatballs</span><span class="desc">red wine sauce, figs and bleu cheese</span></li>
+        <li><span class="dish">Fried Calamari</span><span class="desc">capers, lemon, garlic, orange horseradish cream</span></li>
+        <li><span class="dish">Sweet Potato Ricotta Dip</span><span class="desc">grilled pita</span></li>
+        <li><span class="dish">Roasted/Fried Potatoes</span><span class="desc">saffron &amp; tomato allioli</span></li>
+        <li><span class="dish">Sautéed Mussels</span><span class="desc">sundried tomatoes, light cream</span></li>
+        <li><span class="dish">Sautéed Shrimp</span><span class="desc">garlic, parsley and olive oil</span></li>
+        <li><span class="dish">Bacon Wrapped Scallops</span><span class="desc">red pepper flakes and truffle honey</span></li>
+        <li><span class="dish">Mini Shrimp Burgers</span><span class="desc">hot cherry pepper sauce</span></li>
+        <li><span class="dish">Mini Kobe-Style Beef Burgers</span><span class="desc">basil Dijon mayo, lettuce, tomato, Spanish onion</span></li>
+        <li><span class="dish">Avocado Toast</span><span class="desc">sweet pea ricotta purée, red chili onion jam</span></li>
+        <li><span class="dish">Slow Roasted Chicken Thigh</span><span class="desc">creamy polenta, sundried tomato-olive salsa, pomegranate molasses</span></li>
+        <li><span class="dish">Casamiento</span><span class="desc">sliced steak with rice, beans and vegetables, piquillo chimichurri sauce</span></li>
+        <li><span class="dish">Grilled Chicken Breast</span><span class="desc">farro and vegetable salad, feta, sherry Dijon vinaigrette</span></li>
+        <li><span class="dish">5 Hour Braised Beef Brisket</span><span class="desc">bbq braise sauce, Yukon mashed, Aleppo crème fraîche</span></li>
+        <li><span class="dish">Fried Avocado</span><span class="desc">spicy shrimp salad, lemon ginger dressing</span></li>
+        <li><span class="dish">Tuna Poke</span><span class="desc">raw yellowfin saku, fiery teriyaki sauce, edamame, cashews, wasabi crunch</span></li>
+        <li><span class="dish">Ham &amp; Cheese Fritters</span><span class="desc">serrano, smoked ham and Mahon with Spanish remoulade</span></li>
+        <li><span class="dish">Crisp Braised Pork Belly</span><span class="desc">creamy corn potato purée, Sriracha bbq, pickled vegetables</span></li>
+        <li><span class="dish">Roasted Fried Cauliflower Florets</span><span class="desc">Bocado buffalo sauce, pickled vegetables, gorgonzola ranch</span></li>
+        <li><span class="dish">Grilled Venison</span><span class="desc">roasted sweet potato and caramelized turnip, black cherry agrodolce, blue cheese</span></li>
+        <li><span class="dish">Sautéed Gourmet Mushrooms</span><span class="desc">silky polenta, goat cheese butter, sherry vinegar glaze, shallot crisps</span></li>
+        <li><span class="dish">Grilled Lollipop Lamb Chops</span><span class="desc">rosemary mustard oil</span></li>
+      </ul>
+
+      <h3>Paella options</h3>
+      <ul class="dishes">
+        <li><span class="dish">Classic Paella</span><span class="desc">saffron rice, chicken, calamari, shrimp, chorizo, little necks, mussels, peas, tomato</span></li>
+        <li><span class="dish">Vegetarian Paella</span><span class="desc">tomato, peas, roasted cauliflower, mushrooms, onions, peppers, grilled asparagus, frizzled Spanish onion</span></li>
+        <li><span class="dish">Seafood Paella</span><span class="desc">shrimp, calamari, scallops, white fish, mussels, clams, basil, tomatoes and peas</span></li>
+        <li><span class="dish">Meat Paella</span><span class="desc">chicken, fresh and dry chorizo, beef brisket, peppers &amp; onions, crisp onion rings</span></li>
+        <li><span class="dish">Big Pig Paella</span><span class="desc">slow-roasted pork, roasted sweet potato, red pepper, crispy pork belly, charred onion bacon broth, pimentón bbq drizzle, green onion</span></li>
+      </ul>
+    </section>
+
+    <section id="rsvp" aria-labelledby="rsvp-h">
+      <hr class="accent">
+      <h2 id="rsvp-h">RSVP</h2>
+      <p class="kicker">Kindly RSVP by November 28, 2026</p>
+
+      <form id="rsvp-form" novalidate>
+        <div class="field">
+          <label for="rsvp-name">Full name</label>
+          <input type="text" id="rsvp-name" name="name" autocomplete="name" maxlength="100" required>
+        </div>
+
+        <fieldset id="rsvp-attending">
+          <legend>Will you be there?</legend>
+          <div class="choices">
+            <label class="choice"><input type="radio" id="rsvp-yes" name="attending" value="yes" required><span>Yes, I'll be there</span></label>
+            <label class="choice"><input type="radio" id="rsvp-no" name="attending" value="no"><span>Sorry, I can't make it</span></label>
+          </div>
+        </fieldset>
+
+        <div class="field" id="party-field" hidden>
+          <label for="rsvp-party">How many in your party, including you?</label>
+          <select id="rsvp-party" name="party">
+            <option value="1">1</option><option value="2">2</option><option value="3">3</option>
+            <option value="4">4</option><option value="5">5</option><option value="6">6</option>
+          </select>
+        </div>
+
+        <div class="field" id="diet-field" hidden>
+          <label for="rsvp-diet">Dietary needs or allergies</label>
+          <p class="hint" id="rsvp-diet-hint">Optional. Include anyone in your party.</p>
+          <textarea id="rsvp-diet" name="dietary" maxlength="500" aria-describedby="rsvp-diet-hint"></textarea>
+        </div>
+
+        <div class="trap" aria-hidden="true">
+          <label for="rsvp-website">Leave this empty</label>
+          <input type="text" id="rsvp-website" name="website" tabindex="-1" autocomplete="off">
+        </div>
+
+        <button type="submit" id="rsvp-submit">Send RSVP</button>
+        <p class="status" id="rsvp-status" role="status" aria-live="polite"></p>
+      </form>
+
+      <div class="thanks" id="rsvp-thanks" hidden tabindex="-1">
+        <p class="big" id="thanks-title">Thank you</p>
+        <p id="thanks-text"></p>
+      </div>
+    </section>
+
+    <footer>
+      <span class="names">Yosef &amp; Morgyn</span>
+      December 28, 2026
+    </footer>
+  </main>
+</div>
+
+<script>
+/* Paste the Google Apps Script web app URL here (ends in /exec). */
+const RSVP_ENDPOINT = "";
+
+(function () {
+  const form = document.getElementById("rsvp-form");
+  const status = document.getElementById("rsvp-status");
+  const submit = document.getElementById("rsvp-submit");
+  const partyField = document.getElementById("party-field");
+  const dietField = document.getElementById("diet-field");
+  const thanks = document.getElementById("rsvp-thanks");
+
+  function attendingValue() {
+    const checked = form.querySelector('input[name="attending"]:checked');
+    return checked ? checked.value : "";
+  }
+
+  form.addEventListener("input", function () {
+    if (status.classList.contains("error")) { status.textContent = ""; status.className = "status"; }
+  });
+
+  form.addEventListener("change", function (e) {
+    if (e.target.name === "attending") {
+      const yes = attendingValue() === "yes";
+      partyField.hidden = !yes;
+      dietField.hidden = !yes;
+    }
+  });
+
+  function showError(msg, focusEl) {
+    status.textContent = msg;
+    status.className = "status error";
+    if (focusEl) focusEl.focus();
+  }
+
+  form.addEventListener("submit", async function (e) {
+    e.preventDefault();
+    status.textContent = "";
+    status.className = "status";
+
+    const name = form.elements["name"].value.trim();
+    const attending = attendingValue();
+    if (!name) return showError("Please enter your full name.", form.elements["name"]);
+    if (!attending) return showError("Please let us know if you'll be there.", document.getElementById("rsvp-yes"));
+    if (!RSVP_ENDPOINT) return showError("RSVPs aren't open yet. Please check back soon.");
+
+    const data = new URLSearchParams({
+      name: name,
+      attending: attending,
+      party: attending === "yes" ? form.elements["party"].value : "0",
+      dietary: attending === "yes" ? form.elements["dietary"].value.trim() : "",
+      website: form.elements["website"].value
+    });
+
+    submit.disabled = true;
+    submit.textContent = "Sending…";
+    try {
+      const res = await fetch(RSVP_ENDPOINT, { method: "POST", body: data });
+      const out = await res.json();
+      if (!out.ok) throw new Error(out.error || "failed");
+      const first = name.split(/\s+/)[0];
+      document.getElementById("thanks-title").textContent = "Thank you, " + first;
+      document.getElementById("thanks-text").textContent = attending === "yes"
+        ? "Your RSVP is in for a party of " + form.elements["party"].value + ". We can't wait to celebrate with you."
+        : "Your RSVP is in. Thank you for letting us know.";
+      form.hidden = true;
+      thanks.hidden = false;
+      thanks.focus();
+    } catch (err) {
+      showError("We couldn't send your RSVP. Check your connection and try again.");
+    } finally {
+      submit.disabled = false;
+      submit.textContent = "Send RSVP";
+    }
+  });
+})();
+</script>
+</body>
+</html>
