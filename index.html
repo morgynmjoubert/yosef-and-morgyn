@@ -51,16 +51,21 @@ a:hover { color: var(--white); }
 
 /* ---------- layout ---------- */
 .layout { position: relative; }
-.photo { background: var(--dusk); }
+.photo { background: var(--dusk); isolation: isolate; }
+/* Faint dither grain over the fades so the dark blend renders smooth instead of in stripes */
+.photo::before {
+  content: ""; position: absolute; inset: 0; z-index: 2; pointer-events: none;
+  background: url("images/grain.png") repeat; background-size: 128px 128px;
+  mix-blend-mode: overlay; opacity: .06;
+  -webkit-mask-image: linear-gradient(to top, transparent 0%, #000 4%, #000 13%, transparent 20%, transparent 28%, #000 40%);
+  mask-image: linear-gradient(to top, transparent 0%, #000 4%, #000 13%, transparent 20%, transparent 28%, #000 40%);
+}
 .photo { position: absolute; inset: 0 0 auto 0; height: var(--hero-h); margin: 0; overflow: hidden; }
-.photo img { width: 100%; height: 100%; object-fit: cover; object-position: 48% 100%;
-  -webkit-mask-image: linear-gradient(to top, rgba(0,0,0,0.000) 0.0%, rgba(0,0,0,0.011) 0.8%, rgba(0,0,0,0.043) 1.5%, rgba(0,0,0,0.092) 2.2%, rgba(0,0,0,0.156) 3.0%, rgba(0,0,0,0.232) 3.8%, rgba(0,0,0,0.316) 4.5%, rgba(0,0,0,0.407) 5.2%, rgba(0,0,0,0.500) 6.0%, rgba(0,0,0,0.593) 6.8%, rgba(0,0,0,0.684) 7.5%, rgba(0,0,0,0.768) 8.2%, rgba(0,0,0,0.844) 9.0%, rgba(0,0,0,0.908) 9.8%, rgba(0,0,0,0.957) 10.5%, rgba(0,0,0,0.989) 11.2%, rgba(0,0,0,1.000) 12.0%);
-  mask-image: linear-gradient(to top, rgba(0,0,0,0.000) 0.0%, rgba(0,0,0,0.011) 0.8%, rgba(0,0,0,0.043) 1.5%, rgba(0,0,0,0.092) 2.2%, rgba(0,0,0,0.156) 3.0%, rgba(0,0,0,0.232) 3.8%, rgba(0,0,0,0.316) 4.5%, rgba(0,0,0,0.407) 5.2%, rgba(0,0,0,0.500) 6.0%, rgba(0,0,0,0.593) 6.8%, rgba(0,0,0,0.684) 7.5%, rgba(0,0,0,0.768) 8.2%, rgba(0,0,0,0.844) 9.0%, rgba(0,0,0,0.908) 9.8%, rgba(0,0,0,0.957) 10.5%, rgba(0,0,0,0.989) 11.2%, rgba(0,0,0,1.000) 12.0%); }
+.photo img { width: 100%; height: 100%; object-fit: cover; object-position: 48% 100%; }
 .photo::after {
   content: ""; position: absolute; inset: 0;
-  background: linear-gradient(to bottom,
-    rgba(31,42,53,.88) 0%, rgba(31,42,53,.80) 30%, rgba(31,42,53,.35) 52%,
-    rgba(31,42,53,0) 66%, rgba(31,42,53,0) 100%);
+  background: linear-gradient(to bottom, rgba(31,42,53,.88) 0%, rgba(31,42,53,0.8000) 30.00%, rgba(31,42,53,0.7998) 31.25%, rgba(31,42,53,0.7982) 32.50%, rgba(31,42,53,0.7943) 33.75%, rgba(31,42,53,0.7872) 35.00%, rgba(31,42,53,0.7762) 36.25%, rgba(31,42,53,0.7610) 37.50%, rgba(31,42,53,0.7413) 38.75%, rgba(31,42,53,0.7172) 40.00%, rgba(31,42,53,0.6887) 41.25%, rgba(31,42,53,0.6560) 42.50%, rgba(31,42,53,0.6196) 43.75%, rgba(31,42,53,0.5798) 45.00%, rgba(31,42,53,0.5374) 46.25%, rgba(31,42,53,0.4928) 47.50%, rgba(31,42,53,0.4468) 48.75%, rgba(31,42,53,0.4000) 50.00%, rgba(31,42,53,0.3532) 51.25%, rgba(31,42,53,0.3072) 52.50%, rgba(31,42,53,0.2626) 53.75%, rgba(31,42,53,0.2202) 55.00%, rgba(31,42,53,0.1804) 56.25%, rgba(31,42,53,0.1440) 57.50%, rgba(31,42,53,0.1113) 58.75%, rgba(31,42,53,0.0828) 60.00%, rgba(31,42,53,0.0587) 61.25%, rgba(31,42,53,0.0390) 62.50%, rgba(31,42,53,0.0238) 63.75%, rgba(31,42,53,0.0128) 65.00%, rgba(31,42,53,0.0057) 66.25%, rgba(31,42,53,0.0018) 67.50%, rgba(31,42,53,0.0002) 68.75%, rgba(31,42,53,0.0000) 70.00%),
+    linear-gradient(to top, rgba(31,42,53,1.0000) 0.00%, rgba(31,42,53,0.9997) 0.38%, rgba(31,42,53,0.9978) 0.75%, rgba(31,42,53,0.9929) 1.12%, rgba(31,42,53,0.9839) 1.50%, rgba(31,42,53,0.9702) 1.88%, rgba(31,42,53,0.9512) 2.25%, rgba(31,42,53,0.9267) 2.62%, rgba(31,42,53,0.8965) 3.00%, rgba(31,42,53,0.8608) 3.38%, rgba(31,42,53,0.8200) 3.75%, rgba(31,42,53,0.7745) 4.12%, rgba(31,42,53,0.7248) 4.50%, rgba(31,42,53,0.6717) 4.88%, rgba(31,42,53,0.6160) 5.25%, rgba(31,42,53,0.5584) 5.62%, rgba(31,42,53,0.5000) 6.00%, rgba(31,42,53,0.4416) 6.38%, rgba(31,42,53,0.3840) 6.75%, rgba(31,42,53,0.3283) 7.12%, rgba(31,42,53,0.2752) 7.50%, rgba(31,42,53,0.2255) 7.88%, rgba(31,42,53,0.1800) 8.25%, rgba(31,42,53,0.1392) 8.62%, rgba(31,42,53,0.1035) 9.00%, rgba(31,42,53,0.0733) 9.38%, rgba(31,42,53,0.0488) 9.75%, rgba(31,42,53,0.0298) 10.12%, rgba(31,42,53,0.0161) 10.50%, rgba(31,42,53,0.0071) 10.88%, rgba(31,42,53,0.0022) 11.25%, rgba(31,42,53,0.0003) 11.62%, rgba(31,42,53,0.0000) 12.00%);
 }
 .content {
   position: relative;
@@ -73,10 +78,12 @@ a:hover { color: var(--white); }
 @media (min-width: 1000px) {
   .layout { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr); }
   .photo { position: sticky; top: 0; height: 100svh; grid-column: 2; grid-row: 1; margin-left: -8vw; }
-  .photo::after { display: none; }
-  .photo img { object-position: 60% 100%;
-    -webkit-mask-image: linear-gradient(to right, rgba(0,0,0,0.000) 0.0%, rgba(0,0,0,0.011) 2.6%, rgba(0,0,0,0.043) 5.2%, rgba(0,0,0,0.092) 7.9%, rgba(0,0,0,0.156) 10.5%, rgba(0,0,0,0.232) 13.1%, rgba(0,0,0,0.316) 15.8%, rgba(0,0,0,0.407) 18.4%, rgba(0,0,0,0.500) 21.0%, rgba(0,0,0,0.593) 23.6%, rgba(0,0,0,0.684) 26.2%, rgba(0,0,0,0.768) 28.9%, rgba(0,0,0,0.844) 31.5%, rgba(0,0,0,0.908) 34.1%, rgba(0,0,0,0.957) 36.8%, rgba(0,0,0,0.989) 39.4%, rgba(0,0,0,1.000) 42.0%);
-    mask-image: linear-gradient(to right, rgba(0,0,0,0.000) 0.0%, rgba(0,0,0,0.011) 2.6%, rgba(0,0,0,0.043) 5.2%, rgba(0,0,0,0.092) 7.9%, rgba(0,0,0,0.156) 10.5%, rgba(0,0,0,0.232) 13.1%, rgba(0,0,0,0.316) 15.8%, rgba(0,0,0,0.407) 18.4%, rgba(0,0,0,0.500) 21.0%, rgba(0,0,0,0.593) 23.6%, rgba(0,0,0,0.684) 26.2%, rgba(0,0,0,0.768) 28.9%, rgba(0,0,0,0.844) 31.5%, rgba(0,0,0,0.908) 34.1%, rgba(0,0,0,0.957) 36.8%, rgba(0,0,0,0.989) 39.4%, rgba(0,0,0,1.000) 42.0%); }
+  .photo::after { background: linear-gradient(to right, rgba(31,42,53,1.0000) 0.00%, rgba(31,42,53,0.9999) 0.88%, rgba(31,42,53,0.9993) 1.75%, rgba(31,42,53,0.9978) 2.62%, rgba(31,42,53,0.9949) 3.50%, rgba(31,42,53,0.9904) 4.38%, rgba(31,42,53,0.9839) 5.25%, rgba(31,42,53,0.9754) 6.12%, rgba(31,42,53,0.9645) 7.00%, rgba(31,42,53,0.9512) 7.88%, rgba(31,42,53,0.9355) 8.75%, rgba(31,42,53,0.9172) 9.62%, rgba(31,42,53,0.8965) 10.50%, rgba(31,42,53,0.8733) 11.38%, rgba(31,42,53,0.8478) 12.25%, rgba(31,42,53,0.8200) 13.12%, rgba(31,42,53,0.7901) 14.00%, rgba(31,42,53,0.7583) 14.88%, rgba(31,42,53,0.7248) 15.75%, rgba(31,42,53,0.6897) 16.62%, rgba(31,42,53,0.6534) 17.50%, rgba(31,42,53,0.6160) 18.38%, rgba(31,42,53,0.5778) 19.25%, rgba(31,42,53,0.5390) 20.12%, rgba(31,42,53,0.5000) 21.00%, rgba(31,42,53,0.4610) 21.88%, rgba(31,42,53,0.4222) 22.75%, rgba(31,42,53,0.3840) 23.62%, rgba(31,42,53,0.3466) 24.50%, rgba(31,42,53,0.3103) 25.38%, rgba(31,42,53,0.2752) 26.25%, rgba(31,42,53,0.2417) 27.12%, rgba(31,42,53,0.2099) 28.00%, rgba(31,42,53,0.1800) 28.88%, rgba(31,42,53,0.1522) 29.75%, rgba(31,42,53,0.1267) 30.62%, rgba(31,42,53,0.1035) 31.50%, rgba(31,42,53,0.0828) 32.38%, rgba(31,42,53,0.0645) 33.25%, rgba(31,42,53,0.0488) 34.12%, rgba(31,42,53,0.0355) 35.00%, rgba(31,42,53,0.0246) 35.88%, rgba(31,42,53,0.0161) 36.75%, rgba(31,42,53,0.0096) 37.62%, rgba(31,42,53,0.0051) 38.50%, rgba(31,42,53,0.0022) 39.38%, rgba(31,42,53,0.0007) 40.25%, rgba(31,42,53,0.0001) 41.12%, rgba(31,42,53,0.0000) 42.00%); }
+  .photo::before {
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 4%, #000 44%, transparent 56%);
+    mask-image: linear-gradient(to right, transparent 0%, #000 4%, #000 44%, transparent 56%);
+  }
+  .photo img { object-position: 60% 100%; }
   .content { z-index: 1; }
   .content { grid-column: 1; grid-row: 1; justify-self: end; width: 100%; max-width: 620px;
     padding-left: max(48px, env(safe-area-inset-left, 0px)); padding-right: 48px; }
