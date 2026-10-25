@@ -57,7 +57,7 @@ a:hover { color: var(--white); }
   content: ""; position: absolute; inset: 0;
   background: linear-gradient(to bottom,
     rgba(31,42,53,.88) 0%, rgba(31,42,53,.80) 30%, rgba(31,42,53,.35) 52%,
-    rgba(31,42,53,0) 66%, rgba(31,42,53,0) 90%, var(--dusk) 100%);
+    rgba(31,42,53,0) 66%, rgba(31,42,53,0) 100%);
 }
 .content {
   position: relative;
@@ -70,7 +70,7 @@ a:hover { color: var(--white); }
 @media (min-width: 1000px) {
   .layout { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr); }
   .photo { position: sticky; top: 0; height: 100svh; grid-column: 2; grid-row: 1; }
-  .photo::after { background: linear-gradient(to right, var(--dusk) 0%, rgba(31,42,53,0) 14%); }
+  .photo::after { display: none; }
   .content { grid-column: 1; grid-row: 1; justify-self: end; width: 100%; max-width: 620px;
     padding-left: max(48px, env(safe-area-inset-left, 0px)); padding-right: 48px; }
   .hero { min-height: auto; padding-block: 96px 24px; }
@@ -147,6 +147,9 @@ legend { padding: 0; margin-bottom: 10px; }
 }
 .choice input:checked + span { border-color: var(--peach); background: #3A3A3F; color: var(--white); box-shadow: inset 0 0 0 1px var(--peach); }
 .choice input:focus-visible + span { outline: 2px solid var(--peach-lt); outline-offset: 2px; }
+.check { display: flex; align-items: center; gap: 12px; cursor: pointer; font-weight: 500; color: var(--white); }
+.check input { width: 22px; height: 22px; margin: 0; accent-color: var(--peach); flex: none; cursor: pointer; }
+#plusone-name-field { margin-top: 8px; }
 .trap { position: absolute; left: -10000px; width: 1px; height: 1px; overflow: hidden; }
 button {
   font: inherit; font-weight: 600; letter-spacing: .04em; color: #1F2A35; background: var(--peach-lt);
@@ -218,13 +221,14 @@ footer .names { font-family: var(--script); font-style: normal; color: var(--whi
 
       <ul class="courses">
         <li><span class="label">To start</span><p><span class="course-name">Cheese &amp; charcuterie</span><br><span class="desc">Gourmet Spanish cheeses and cured, sliced meats</span></p></li>
-        <li><span class="label">Salad</span><p><span class="course-name">Madalena salad or Mediterranean salad</span></p></li>
-        <li><span class="label">Tapas</span><p><span class="course-name">Five tapas</span>, shared at each table</p></li>
+        <li><span class="label">Salad</span><p><span class="course-name">Madalena or Mediterranean salad</span>, chosen by your table</p></li>
+        <li><span class="label">Tapas</span><p><span class="course-name">Five tapas</span>, chosen by your table</p></li>
         <li><span class="label">Paella</span><p><span class="course-name">One paella</span>, shared at each table</p></li>
-        <li><span class="label">Dessert</span><p><span class="course-name">Churros with chocolate dipping sauce or seasonal bread pudding</span></p></li>
+        <li><span class="label">Dessert</span><p><span class="course-name">Churros with chocolate dipping sauce or seasonal bread pudding</span>, chosen by your table</p></li>
+        <li><span class="label">Drinks</span><p><span class="course-name">Cash bar</span>. Guests pay for their own drinks.</p></li>
       </ul>
 
-      <p class="note">Final selections are still being chosen from the options below.</p>
+      <p class="note">There's nothing to choose ahead of time. Once you're seated, each table picks its salad, five tapas and dessert together from the options below, and everything is served family-style to share.</p>
 
       <h3>Tapas options</h3>
       <ul class="dishes two-col">
@@ -285,11 +289,19 @@ footer .names { font-family: var(--script); font-style: normal; color: var(--whi
         </fieldset>
 
         <div class="field" id="party-field" hidden>
-          <label for="rsvp-party">How many in your party, including you?</label>
+          <label for="rsvp-party">How many invited guests are in your party, including you?</label>
           <select id="rsvp-party" name="party">
             <option value="1">1</option><option value="2">2</option><option value="3">3</option>
             <option value="4">4</option><option value="5">5</option><option value="6">6</option>
           </select>
+        </div>
+
+        <div class="field" id="plusone-field" hidden>
+          <label class="check" for="rsvp-plusone"><input type="checkbox" id="rsvp-plusone" name="plusone" value="yes"><span>I'm bringing a plus-one</span></label>
+          <div class="field" id="plusone-name-field" hidden>
+            <label for="rsvp-plusone-name">Plus-one's full name</label>
+            <input type="text" id="rsvp-plusone-name" name="plusone_name" autocomplete="off" maxlength="100">
+          </div>
         </div>
 
         <div class="field" id="diet-field" hidden>
@@ -330,6 +342,8 @@ const RSVP_ENDPOINT = "https://script.google.com/macros/s/AKfycbzVrn41afgKJ_XTfC
   const submit = document.getElementById("rsvp-submit");
   const partyField = document.getElementById("party-field");
   const dietField = document.getElementById("diet-field");
+  const plusField = document.getElementById("plusone-field");
+  const plusNameField = document.getElementById("plusone-name-field");
   const thanks = document.getElementById("rsvp-thanks");
 
   function attendingValue() {
@@ -345,7 +359,12 @@ const RSVP_ENDPOINT = "https://script.google.com/macros/s/AKfycbzVrn41afgKJ_XTfC
     if (e.target.name === "attending") {
       const yes = attendingValue() === "yes";
       partyField.hidden = !yes;
+      plusField.hidden = !yes;
       dietField.hidden = !yes;
+    }
+    if (e.target.name === "plusone") {
+      plusNameField.hidden = !e.target.checked;
+      if (e.target.checked) form.elements["plusone_name"].focus();
     }
   });
 
@@ -364,12 +383,17 @@ const RSVP_ENDPOINT = "https://script.google.com/macros/s/AKfycbzVrn41afgKJ_XTfC
     const attending = attendingValue();
     if (!name) return showError("Please enter your full name.", form.elements["name"]);
     if (!attending) return showError("Please let us know if you'll be there.", document.getElementById("rsvp-yes"));
+    const bringingPlusOne = attending === "yes" && form.elements["plusone"].checked;
+    const plusOneName = bringingPlusOne ? form.elements["plusone_name"].value.trim() : "";
+    if (bringingPlusOne && !plusOneName) return showError("Please add your plus-one's full name.", form.elements["plusone_name"]);
     if (!RSVP_ENDPOINT) return showError("RSVPs aren't open yet. Please check back soon.");
 
     const data = new URLSearchParams({
       name: name,
       attending: attending,
       party: attending === "yes" ? form.elements["party"].value : "0",
+      plusone: bringingPlusOne ? "yes" : "no",
+      plusone_name: plusOneName,
       dietary: attending === "yes" ? form.elements["dietary"].value.trim() : "",
       website: form.elements["website"].value
     });
@@ -383,7 +407,7 @@ const RSVP_ENDPOINT = "https://script.google.com/macros/s/AKfycbzVrn41afgKJ_XTfC
       const first = name.split(/\s+/)[0];
       document.getElementById("thanks-title").textContent = "Thank you, " + first;
       document.getElementById("thanks-text").textContent = attending === "yes"
-        ? "Your RSVP is in for a party of " + form.elements["party"].value + ". We can't wait to celebrate with you."
+        ? "Your RSVP is in for a party of " + (Number(form.elements["party"].value) + (bringingPlusOne ? 1 : 0)) + ". We can't wait to celebrate with you."
         : "Your RSVP is in. Thank you for letting us know.";
       form.hidden = true;
       thanks.hidden = false;

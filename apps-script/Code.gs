@@ -5,7 +5,8 @@
  * Each RSVP from the website becomes one row on the "RSVPs" tab.
  */
 const SHEET_NAME = 'RSVPs';
-const HEADERS = ['Submitted', 'Name', 'Attending', 'Party size', 'Dietary needs or allergies'];
+const HEADERS = ['Submitted', 'Name', 'Attending', 'Party size', 'Plus-one', 'Dietary needs or allergies'];
+const TOTAL_FORMULA = '=SUM(D2:D)+COUNTA(E2:E)';
 const MAX_PARTY = 6;
 
 function doPost(e) {
@@ -25,12 +26,16 @@ function doPost(e) {
     party = parseInt(p.party, 10);
     if (!(party >= 1 && party <= MAX_PARTY)) party = 1;
   }
+  const plusOne = attending === 'Yes' && p.plusone === 'yes' ? clean_(p.plusone_name, 100) : '';
+  if (attending === 'Yes' && p.plusone === 'yes' && !plusOne) {
+    return json_({ ok: false, error: "Please add your plus-one's full name." });
+  }
   const dietary = attending === 'Yes' ? clean_(p.dietary, 500) : '';
 
   const lock = LockService.getScriptLock();
   lock.waitLock(10000);
   try {
-    sheet_().appendRow([new Date(), name, attending, party, dietary]);
+    sheet_().appendRow([new Date(), name, attending, party, plusOne, dietary]);
   } finally {
     lock.releaseLock();
   }
@@ -55,12 +60,24 @@ function sheet_() {
     sh.appendRow(HEADERS);
     sh.setFrozenRows(1);
     sh.getRange(1, 1, 1, HEADERS.length).setFontWeight('bold');
-    sh.getRange('G1').setValue('Total attending').setFontWeight('bold');
-    sh.getRange('H1').setFormula('=SUM(D2:D)');
-    sh.getRange('G2').setValue('Seated limit (Bodega Room)').setFontWeight('bold');
-    sh.getRange('H2').setValue(44);
+    sh.getRange('H1').setValue('Total attending').setFontWeight('bold');
+    sh.getRange('I1').setFormula(TOTAL_FORMULA);
+    sh.getRange('H2').setValue('Seated limit (Bodega Room)').setFontWeight('bold');
+    sh.getRange('I2').setValue(44);
   }
   return sh;
+}
+
+// One-time upgrade for a sheet made before plus-ones: adds the Plus-one
+// column after Party size and counts plus-ones in the total. Safe to re-run.
+function upgradeForPlusOnes() {
+  const sh = sheet_();
+  if (sh.getRange('E1').getValue() === 'Plus-one') return;
+  sh.insertColumnAfter(4);
+  sh.getRange('E1').setValue('Plus-one').setFontWeight('bold');
+  const headers = sh.getRange(1, 1, 1, sh.getLastColumn()).getValues()[0];
+  const col = headers.indexOf('Total attending');
+  if (col >= 0) sh.getRange(1, col + 2).setFormula(TOTAL_FORMULA);
 }
 
 // Trims, caps length, and stops spreadsheet formula injection.
