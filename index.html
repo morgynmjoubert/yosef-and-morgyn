@@ -50,6 +50,8 @@ body {
   padding-bottom: env(safe-area-inset-bottom, 0px);
 }
 [hidden] { display: none !important; }
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+abbr[title] { text-decoration: none; }
 img { max-width: 100%; display: block; }
 a { color: var(--peach-lt); text-underline-offset: 3px; }
 a:hover { color: var(--white); }
@@ -66,11 +68,12 @@ a:hover { color: var(--white); }
   -webkit-mask-image: linear-gradient(to top, transparent 0%, #000 4%, #000 13%, transparent 20%, transparent 28%, #000 40%);
   mask-image: linear-gradient(to top, transparent 0%, #000 4%, #000 13%, transparent 20%, transparent 28%, #000 40%);
 }
-.photo { position: absolute; inset: 0 0 auto 0; height: var(--hero-h); margin: 0; overflow: hidden; }
+.photo { position: absolute; inset: 0 0 auto 0; height: var(--hero-h); margin: 0; overflow: hidden;
+  --scrim-hold: calc(clamp(345px, 47vw + 170px, 480px) + 24px); }
 .photo img { width: 100%; height: 100%; object-fit: cover; object-position: 48% 100%; }
 .photo::after {
   content: ""; position: absolute; inset: 0;
-  background: linear-gradient(to bottom, rgba(31,42,53,.88) 0%, rgba(31,42,53,0.8000) 30.00%, rgba(31,42,53,0.7998) 31.25%, rgba(31,42,53,0.7982) 32.50%, rgba(31,42,53,0.7943) 33.75%, rgba(31,42,53,0.7872) 35.00%, rgba(31,42,53,0.7762) 36.25%, rgba(31,42,53,0.7610) 37.50%, rgba(31,42,53,0.7413) 38.75%, rgba(31,42,53,0.7172) 40.00%, rgba(31,42,53,0.6887) 41.25%, rgba(31,42,53,0.6560) 42.50%, rgba(31,42,53,0.6196) 43.75%, rgba(31,42,53,0.5798) 45.00%, rgba(31,42,53,0.5374) 46.25%, rgba(31,42,53,0.4928) 47.50%, rgba(31,42,53,0.4468) 48.75%, rgba(31,42,53,0.4000) 50.00%, rgba(31,42,53,0.3532) 51.25%, rgba(31,42,53,0.3072) 52.50%, rgba(31,42,53,0.2626) 53.75%, rgba(31,42,53,0.2202) 55.00%, rgba(31,42,53,0.1804) 56.25%, rgba(31,42,53,0.1440) 57.50%, rgba(31,42,53,0.1113) 58.75%, rgba(31,42,53,0.0828) 60.00%, rgba(31,42,53,0.0587) 61.25%, rgba(31,42,53,0.0390) 62.50%, rgba(31,42,53,0.0238) 63.75%, rgba(31,42,53,0.0128) 65.00%, rgba(31,42,53,0.0057) 66.25%, rgba(31,42,53,0.0018) 67.50%, rgba(31,42,53,0.0002) 68.75%, rgba(31,42,53,0.0000) 70.00%),
+  background: linear-gradient(to bottom, rgba(31,42,53,.88) 0%, rgba(31,42,53,0.8000) calc(var(--scrim-hold) + 0.00%), rgba(31,42,53,0.7998) calc(var(--scrim-hold) + 0.94%), rgba(31,42,53,0.7982) calc(var(--scrim-hold) + 1.88%), rgba(31,42,53,0.7943) calc(var(--scrim-hold) + 2.81%), rgba(31,42,53,0.7872) calc(var(--scrim-hold) + 3.75%), rgba(31,42,53,0.7762) calc(var(--scrim-hold) + 4.69%), rgba(31,42,53,0.7610) calc(var(--scrim-hold) + 5.62%), rgba(31,42,53,0.7413) calc(var(--scrim-hold) + 6.56%), rgba(31,42,53,0.7172) calc(var(--scrim-hold) + 7.50%), rgba(31,42,53,0.6887) calc(var(--scrim-hold) + 8.44%), rgba(31,42,53,0.6560) calc(var(--scrim-hold) + 9.38%), rgba(31,42,53,0.6196) calc(var(--scrim-hold) + 10.31%), rgba(31,42,53,0.5798) calc(var(--scrim-hold) + 11.25%), rgba(31,42,53,0.5374) calc(var(--scrim-hold) + 12.19%), rgba(31,42,53,0.4928) calc(var(--scrim-hold) + 13.12%), rgba(31,42,53,0.4468) calc(var(--scrim-hold) + 14.06%), rgba(31,42,53,0.4000) calc(var(--scrim-hold) + 15.00%), rgba(31,42,53,0.3532) calc(var(--scrim-hold) + 15.94%), rgba(31,42,53,0.3072) calc(var(--scrim-hold) + 16.88%), rgba(31,42,53,0.2626) calc(var(--scrim-hold) + 17.81%), rgba(31,42,53,0.2202) calc(var(--scrim-hold) + 18.75%), rgba(31,42,53,0.1804) calc(var(--scrim-hold) + 19.69%), rgba(31,42,53,0.1440) calc(var(--scrim-hold) + 20.62%), rgba(31,42,53,0.1113) calc(var(--scrim-hold) + 21.56%), rgba(31,42,53,0.0828) calc(var(--scrim-hold) + 22.50%), rgba(31,42,53,0.0587) calc(var(--scrim-hold) + 23.44%), rgba(31,42,53,0.0390) calc(var(--scrim-hold) + 24.38%), rgba(31,42,53,0.0238) calc(var(--scrim-hold) + 25.31%), rgba(31,42,53,0.0128) calc(var(--scrim-hold) + 26.25%), rgba(31,42,53,0.0057) calc(var(--scrim-hold) + 27.19%), rgba(31,42,53,0.0018) calc(var(--scrim-hold) + 28.12%), rgba(31,42,53,0.0002) calc(var(--scrim-hold) + 29.06%), rgba(31,42,53,0.0000) calc(var(--scrim-hold) + 30.00%)),
     linear-gradient(to top, rgba(31,42,53,1.0000) 0.00%, rgba(31,42,53,0.9997) 0.38%, rgba(31,42,53,0.9978) 0.75%, rgba(31,42,53,0.9929) 1.12%, rgba(31,42,53,0.9839) 1.50%, rgba(31,42,53,0.9702) 1.88%, rgba(31,42,53,0.9512) 2.25%, rgba(31,42,53,0.9267) 2.62%, rgba(31,42,53,0.8965) 3.00%, rgba(31,42,53,0.8608) 3.38%, rgba(31,42,53,0.8200) 3.75%, rgba(31,42,53,0.7745) 4.12%, rgba(31,42,53,0.7248) 4.50%, rgba(31,42,53,0.6717) 4.88%, rgba(31,42,53,0.6160) 5.25%, rgba(31,42,53,0.5584) 5.62%, rgba(31,42,53,0.5000) 6.00%, rgba(31,42,53,0.4416) 6.38%, rgba(31,42,53,0.3840) 6.75%, rgba(31,42,53,0.3283) 7.12%, rgba(31,42,53,0.2752) 7.50%, rgba(31,42,53,0.2255) 7.88%, rgba(31,42,53,0.1800) 8.25%, rgba(31,42,53,0.1392) 8.62%, rgba(31,42,53,0.1035) 9.00%, rgba(31,42,53,0.0733) 9.38%, rgba(31,42,53,0.0488) 9.75%, rgba(31,42,53,0.0298) 10.12%, rgba(31,42,53,0.0161) 10.50%, rgba(31,42,53,0.0071) 10.88%, rgba(31,42,53,0.0022) 11.25%, rgba(31,42,53,0.0003) 11.62%, rgba(31,42,53,0.0000) 12.00%);
 }
 .content {
@@ -107,6 +110,9 @@ h1 {
 h1 span { display: block; }
 .date { font-weight: 600; color: var(--peach-lt); font-size: clamp(1.2rem, 4.6vw, 1.55rem); margin: 0; }
 .place-line { margin: 6px 0 0; font-style: italic; }
+@media (max-width: 999px) {
+  .hero .date, .hero .place-line { text-shadow: 0 0 2px rgba(31,42,53,.9), 0 0 10px rgba(31,42,53,.85), 0 0 24px rgba(31,42,53,.7); }
+}
 
 section { padding-block: 56px 8px; }
 h2 {
@@ -126,7 +132,7 @@ h2 {
 .time { font-style: italic; color: var(--peach-lt); font-size: 1.2rem; margin: 0; }
 .event { font-weight: 700; color: var(--white); font-size: 1.65rem; line-height: 1.2; margin: 0 0 2px; }
 .venue { font-style: italic; margin: 0; }
-.directions { display: inline-block; margin-top: 6px; font-size: .95rem; letter-spacing: .06em; }
+.directions { display: inline-flex; align-items: center; min-height: 44px; min-width: 44px; font-size: .95rem; letter-spacing: .06em; }
 
 /* ---------- menu ---------- */
 .courses { list-style: none; margin: 0 0 40px; padding: 0; display: grid; gap: 18px; }
@@ -139,7 +145,7 @@ h3 { font-weight: 600; color: var(--white); font-size: 1.3rem; margin: 0 0 16px;
 .dishes { list-style: none; margin: 0 0 40px; padding: 0; columns: 1; column-gap: 36px; }
 .dishes li { break-inside: avoid; margin: 0 0 14px; }
 .dish { color: var(--white); font-weight: 500; display: block; line-height: 1.3; }
-.desc { font-style: italic; font-size: 1rem; line-height: 1.45; }
+.desc { font-style: italic; font-size: 1rem; line-height: 1.5; }
 @media (min-width: 640px) and (max-width: 999px), (min-width: 1300px) { .dishes.two-col { columns: 2; } }
 @media (max-width: 420px) { .courses li { grid-template-columns: minmax(0, 1fr); } }
 
@@ -162,18 +168,23 @@ legend { padding: 0; margin-bottom: 10px; }
 .choice { position: relative; }
 .choice input { position: absolute; opacity: 0; inset: 0; width: 100%; height: 100%; margin: 0; cursor: pointer; }
 .choice span {
-  display: block; padding: 14px 16px; border: 1px solid var(--line); border-radius: 6px;
+  display: flex; align-items: center; gap: 12px; padding: 14px 16px; border: 1px solid var(--line); border-radius: 6px;
   background: var(--slate); color: var(--cream); cursor: pointer;
 }
+.choice span::before {
+  content: ""; flex: none; width: 18px; height: 18px; border-radius: 50%;
+  border: 2px solid var(--line); background: transparent;
+}
+.choice input:checked + span::before { border-color: var(--peach); background: radial-gradient(circle, var(--peach) 0 4px, transparent 4.5px); }
 .choice input:checked + span { border-color: var(--peach); background: #3A3A3F; color: var(--white); box-shadow: inset 0 0 0 1px var(--peach); }
 .choice input:focus-visible + span { outline: 2px solid var(--peach-lt); outline-offset: 2px; }
-.check { display: flex; align-items: center; gap: 12px; cursor: pointer; font-weight: 500; color: var(--white); }
+.check { display: flex; align-items: center; gap: 12px; min-height: 44px; cursor: pointer; font-weight: 500; color: var(--white); }
 .check input { width: 22px; height: 22px; margin: 0; accent-color: var(--peach); flex: none; cursor: pointer; }
 #plusone-name-field { margin-top: 8px; }
 .trap { position: absolute; left: -10000px; width: 1px; height: 1px; overflow: hidden; }
 button {
   font: inherit; font-weight: 600; letter-spacing: .04em; color: #1F2A35; background: var(--peach-lt);
-  border: 0; border-radius: 6px; padding: 14px 28px; cursor: pointer; justify-self: start;
+  border: 2px solid transparent; border-radius: 6px; padding: 12px 26px; cursor: pointer; justify-self: start;
 }
 button:hover { background: var(--white); }
 button[disabled] { opacity: .65; cursor: progress; }
@@ -187,10 +198,15 @@ footer { padding-block: 64px 48px; color: var(--cream); font-style: italic; }
 footer .names { font-family: var(--script); font-style: normal; color: var(--white); font-size: 2.2rem; display: block; line-height: 1.2; }
 
 @media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
+@media (forced-colors: active) {
+  .choice input:checked + span { outline: 3px solid Highlight; outline-offset: -3px; }
+  .choice input:checked + span::before { background: Highlight; border-color: Highlight; forced-color-adjust: none; }
+  .accent { background: CanvasText; }
+}
 </style>
 </head>
 <body>
-<div class="layout">
+<main class="layout">
   <figure class="photo">
     <img src="images/beach-1000.jpg"
          srcset="images/beach-1000.jpg 1000w, images/beach-1800.jpg 1800w"
@@ -199,43 +215,43 @@ footer .names { font-family: var(--script); font-style: normal; color: var(--whi
          alt="Yosef kneeling to propose to Morgyn on the beach in front of Haystack Rock at dusk">
   </figure>
 
-  <main class="content">
+  <div class="content">
     <header class="hero">
-      <hr class="accent">
+      <hr class="accent" aria-hidden="true">
       <p class="invite">You are invited to the wedding of</p>
-      <h1><span>Yosef</span><span>&amp; Morgyn</span></h1>
+      <h1><span>Yosef</span> <span>&amp; Morgyn</span></h1>
       <p class="date">Monday · December 28 · 2026</p>
       <p class="place-line">Oxford &amp; Worcester, Massachusetts</p>
     </header>
 
     <section id="schedule" aria-labelledby="schedule-h">
-      <hr class="accent">
+      <hr class="accent" aria-hidden="true">
       <h2 id="schedule-h">Schedule</h2>
       <p class="kicker">Monday, December 28, 2026</p>
       <ol class="timeline">
         <li>
-          <p class="time">5:00 pm</p>
-          <p class="event">Ceremony</p>
-          <p class="venue">Oxford Town Hall<br>325 Main St, Oxford, MA</p>
-          <a class="directions" href="https://www.google.com/maps/search/?api=1&amp;query=Oxford+Town+Hall+325+Main+St+Oxford+MA" target="_blank" rel="noopener">Directions</a>
+          <p class="time">5:00 <abbr title="post meridiem, evening">pm</abbr></p>
+          <h3 class="event">Ceremony</h3>
+          <p class="venue">Oxford Town Hall<br>325 Main <abbr title="Street">St</abbr>, Oxford, <abbr title="Massachusetts">MA</abbr></p>
+          <a class="directions" href="https://www.google.com/maps/search/?api=1&amp;query=Oxford+Town+Hall+325+Main+St+Oxford+MA" target="_blank" rel="noopener">Directions<span class="sr-only"> to Oxford Town Hall (opens in a new tab)</span></a>
         </li>
         <li>
-          <p class="time">6:00 pm</p>
-          <p class="event">Photos</p>
-          <p class="venue">Oxford Common Bandstand<br>75A E Main St, Oxford, MA</p>
-          <a class="directions" href="https://www.google.com/maps/search/?api=1&amp;query=Oxford+Common+Bandstand+75A+E+Main+St+Oxford+MA" target="_blank" rel="noopener">Directions</a>
+          <p class="time">6:00 <abbr title="post meridiem, evening">pm</abbr></p>
+          <h3 class="event">Photos</h3>
+          <p class="venue">Oxford Common Bandstand<br>75A <abbr title="East">E</abbr> Main <abbr title="Street">St</abbr>, Oxford, <abbr title="Massachusetts">MA</abbr></p>
+          <a class="directions" href="https://www.google.com/maps/search/?api=1&amp;query=Oxford+Common+Bandstand+75A+E+Main+St+Oxford+MA" target="_blank" rel="noopener">Directions<span class="sr-only"> to Oxford Common Bandstand (opens in a new tab)</span></a>
         </li>
         <li>
-          <p class="time">7:00 pm</p>
-          <p class="event">Dinner</p>
-          <p class="venue">Bocado Tapas Wine Bar<br>82 Winter St, Worcester, MA</p>
-          <a class="directions" href="https://www.google.com/maps/search/?api=1&amp;query=Bocado+Tapas+Wine+Bar+82+Winter+St+Worcester+MA" target="_blank" rel="noopener">Directions</a>
+          <p class="time">7:00 <abbr title="post meridiem, evening">pm</abbr></p>
+          <h3 class="event">Dinner</h3>
+          <p class="venue">Bocado Tapas Wine Bar<br>82 Winter <abbr title="Street">St</abbr>, Worcester, <abbr title="Massachusetts">MA</abbr></p>
+          <a class="directions" href="https://www.google.com/maps/search/?api=1&amp;query=Bocado+Tapas+Wine+Bar+82+Winter+St+Worcester+MA" target="_blank" rel="noopener">Directions<span class="sr-only"> to Bocado Tapas Wine Bar (opens in a new tab)</span></a>
         </li>
       </ol>
     </section>
 
     <section id="menu" aria-labelledby="menu-h">
-      <hr class="accent">
+      <hr class="accent" aria-hidden="true">
       <h2 id="menu-h">Dinner Menu</h2>
       <p class="kicker">Seated family-style dinner at Bocado Tapas Wine Bar, Bodega Room</p>
 
@@ -268,11 +284,11 @@ footer .names { font-family: var(--script); font-style: normal; color: var(--whi
         <li><span class="dish">Slow Roasted Chicken Thigh</span><span class="desc">creamy polenta, sundried tomato-olive salsa, pomegranate molasses</span></li>
         <li><span class="dish">Casamiento</span><span class="desc">sliced steak with rice, beans and vegetables, piquillo chimichurri sauce</span></li>
         <li><span class="dish">Grilled Chicken Breast</span><span class="desc">farro and vegetable salad, feta, sherry Dijon vinaigrette</span></li>
-        <li><span class="dish">5 Hour Braised Beef Brisket</span><span class="desc">bbq braise sauce, Yukon mashed, Aleppo crème fraîche</span></li>
+        <li><span class="dish">5 Hour Braised Beef Brisket</span><span class="desc"><abbr title="barbecue">bbq</abbr> braise sauce, Yukon mashed, Aleppo crème fraîche</span></li>
         <li><span class="dish">Fried Avocado</span><span class="desc">spicy shrimp salad, lemon ginger dressing</span></li>
         <li><span class="dish">Tuna Poke</span><span class="desc">raw yellowfin saku, fiery teriyaki sauce, edamame, cashews, wasabi crunch</span></li>
         <li><span class="dish">Ham &amp; Cheese Fritters</span><span class="desc">serrano, smoked ham and Mahon with Spanish remoulade</span></li>
-        <li><span class="dish">Crisp Braised Pork Belly</span><span class="desc">creamy corn potato purée, Sriracha bbq, pickled vegetables</span></li>
+        <li><span class="dish">Crisp Braised Pork Belly</span><span class="desc">creamy corn potato purée, Sriracha <abbr title="barbecue">bbq</abbr>, pickled vegetables</span></li>
         <li><span class="dish">Roasted Fried Cauliflower Florets</span><span class="desc">Bocado buffalo sauce, pickled vegetables, gorgonzola ranch</span></li>
         <li><span class="dish">Grilled Venison</span><span class="desc">roasted sweet potato and caramelized turnip, black cherry agrodolce, blue cheese</span></li>
         <li><span class="dish">Sautéed Gourmet Mushrooms</span><span class="desc">silky polenta, goat cheese butter, sherry vinegar glaze, shallot crisps</span></li>
@@ -285,14 +301,14 @@ footer .names { font-family: var(--script); font-style: normal; color: var(--whi
         <li><span class="dish">Vegetarian Paella</span><span class="desc">tomato, peas, roasted cauliflower, mushrooms, onions, peppers, grilled asparagus, frizzled Spanish onion</span></li>
         <li><span class="dish">Seafood Paella</span><span class="desc">shrimp, calamari, scallops, white fish, mussels, clams, basil, tomatoes and peas</span></li>
         <li><span class="dish">Meat Paella</span><span class="desc">chicken, fresh and dry chorizo, beef brisket, peppers &amp; onions, crisp onion rings</span></li>
-        <li><span class="dish">Big Pig Paella</span><span class="desc">slow-roasted pork, roasted sweet potato, red pepper, crispy pork belly, charred onion bacon broth, pimentón bbq drizzle, green onion</span></li>
+        <li><span class="dish">Big Pig Paella</span><span class="desc">slow-roasted pork, roasted sweet potato, red pepper, crispy pork belly, charred onion bacon broth, pimentón <abbr title="barbecue">bbq</abbr> drizzle, green onion</span></li>
       </ul>
     </section>
 
     <section id="rsvp" aria-labelledby="rsvp-h">
-      <hr class="accent">
-      <h2 id="rsvp-h">RSVP</h2>
-      <p class="kicker">Kindly RSVP by November 28, 2026</p>
+      <hr class="accent" aria-hidden="true">
+      <h2 id="rsvp-h"><abbr title="Please reply">RSVP</abbr></h2>
+      <p class="kicker">Kindly <abbr title="Please reply">RSVP</abbr> by November 28, 2026</p>
 
       <form id="rsvp-form" novalidate>
         <div class="field">
@@ -342,8 +358,8 @@ footer .names { font-family: var(--script); font-style: normal; color: var(--whi
       <span class="names">Yosef &amp; Morgyn</span>
       December 28, 2026
     </footer>
-  </main>
-</div>
+  </div>
+</main>
 
 <script>
 /* Paste the Google Apps Script web app URL here (ends in /exec). */
@@ -363,8 +379,16 @@ const RSVP_ENDPOINT = "https://script.google.com/macros/s/AKfycbzVrn41afgKJ_XTfC
     return checked ? checked.value : "";
   }
 
+  function clearInvalid() {
+    form.querySelectorAll("[aria-invalid]").forEach(function (el) {
+      el.removeAttribute("aria-invalid");
+      const ids = (el.getAttribute("aria-describedby") || "").split(" ").filter(function (id) { return id && id !== "rsvp-status"; });
+      if (ids.length) el.setAttribute("aria-describedby", ids.join(" ")); else el.removeAttribute("aria-describedby");
+    });
+  }
+
   form.addEventListener("input", function () {
-    if (status.classList.contains("error")) { status.textContent = ""; status.className = "status"; }
+    if (status.classList.contains("error")) { status.textContent = ""; status.className = "status"; clearInvalid(); }
   });
 
   form.addEventListener("change", function (e) {
@@ -380,15 +404,26 @@ const RSVP_ENDPOINT = "https://script.google.com/macros/s/AKfycbzVrn41afgKJ_XTfC
   });
 
   function showError(msg, focusEl) {
+    clearInvalid();
     status.textContent = msg;
     status.className = "status error";
-    if (focusEl) focusEl.focus();
+    if (focusEl) {
+      const targets = focusEl.name === "attending" ? form.querySelectorAll('input[name="attending"]') : [focusEl];
+      targets.forEach(function (el) {
+        el.setAttribute("aria-invalid", "true");
+        const ids = (el.getAttribute("aria-describedby") || "").split(" ").filter(Boolean);
+        if (ids.indexOf("rsvp-status") < 0) ids.push("rsvp-status");
+        el.setAttribute("aria-describedby", ids.join(" "));
+      });
+      focusEl.focus();
+    }
   }
 
   form.addEventListener("submit", async function (e) {
     e.preventDefault();
     status.textContent = "";
     status.className = "status";
+    clearInvalid();
 
     const name = form.elements["name"].value.trim();
     const attending = attendingValue();
