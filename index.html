@@ -51,8 +51,11 @@ a:hover { color: var(--white); }
 
 /* ---------- layout ---------- */
 .layout { position: relative; }
+.photo { background: var(--dusk); }
 .photo { position: absolute; inset: 0 0 auto 0; height: var(--hero-h); margin: 0; overflow: hidden; }
-.photo img { width: 100%; height: 100%; object-fit: cover; object-position: 48% 100%; }
+.photo img { width: 100%; height: 100%; object-fit: cover; object-position: 48% 100%;
+  -webkit-mask-image: linear-gradient(to top, rgba(0,0,0,0.000) 0.0%, rgba(0,0,0,0.011) 0.8%, rgba(0,0,0,0.043) 1.5%, rgba(0,0,0,0.092) 2.2%, rgba(0,0,0,0.156) 3.0%, rgba(0,0,0,0.232) 3.8%, rgba(0,0,0,0.316) 4.5%, rgba(0,0,0,0.407) 5.2%, rgba(0,0,0,0.500) 6.0%, rgba(0,0,0,0.593) 6.8%, rgba(0,0,0,0.684) 7.5%, rgba(0,0,0,0.768) 8.2%, rgba(0,0,0,0.844) 9.0%, rgba(0,0,0,0.908) 9.8%, rgba(0,0,0,0.957) 10.5%, rgba(0,0,0,0.989) 11.2%, rgba(0,0,0,1.000) 12.0%);
+  mask-image: linear-gradient(to top, rgba(0,0,0,0.000) 0.0%, rgba(0,0,0,0.011) 0.8%, rgba(0,0,0,0.043) 1.5%, rgba(0,0,0,0.092) 2.2%, rgba(0,0,0,0.156) 3.0%, rgba(0,0,0,0.232) 3.8%, rgba(0,0,0,0.316) 4.5%, rgba(0,0,0,0.407) 5.2%, rgba(0,0,0,0.500) 6.0%, rgba(0,0,0,0.593) 6.8%, rgba(0,0,0,0.684) 7.5%, rgba(0,0,0,0.768) 8.2%, rgba(0,0,0,0.844) 9.0%, rgba(0,0,0,0.908) 9.8%, rgba(0,0,0,0.957) 10.5%, rgba(0,0,0,0.989) 11.2%, rgba(0,0,0,1.000) 12.0%); }
 .photo::after {
   content: ""; position: absolute; inset: 0;
   background: linear-gradient(to bottom,
@@ -69,8 +72,12 @@ a:hover { color: var(--white); }
 
 @media (min-width: 1000px) {
   .layout { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr); }
-  .photo { position: sticky; top: 0; height: 100svh; grid-column: 2; grid-row: 1; }
+  .photo { position: sticky; top: 0; height: 100svh; grid-column: 2; grid-row: 1; margin-left: -8vw; }
   .photo::after { display: none; }
+  .photo img { object-position: 60% 100%;
+    -webkit-mask-image: linear-gradient(to right, rgba(0,0,0,0.000) 0.0%, rgba(0,0,0,0.011) 2.6%, rgba(0,0,0,0.043) 5.2%, rgba(0,0,0,0.092) 7.9%, rgba(0,0,0,0.156) 10.5%, rgba(0,0,0,0.232) 13.1%, rgba(0,0,0,0.316) 15.8%, rgba(0,0,0,0.407) 18.4%, rgba(0,0,0,0.500) 21.0%, rgba(0,0,0,0.593) 23.6%, rgba(0,0,0,0.684) 26.2%, rgba(0,0,0,0.768) 28.9%, rgba(0,0,0,0.844) 31.5%, rgba(0,0,0,0.908) 34.1%, rgba(0,0,0,0.957) 36.8%, rgba(0,0,0,0.989) 39.4%, rgba(0,0,0,1.000) 42.0%);
+    mask-image: linear-gradient(to right, rgba(0,0,0,0.000) 0.0%, rgba(0,0,0,0.011) 2.6%, rgba(0,0,0,0.043) 5.2%, rgba(0,0,0,0.092) 7.9%, rgba(0,0,0,0.156) 10.5%, rgba(0,0,0,0.232) 13.1%, rgba(0,0,0,0.316) 15.8%, rgba(0,0,0,0.407) 18.4%, rgba(0,0,0,0.500) 21.0%, rgba(0,0,0,0.593) 23.6%, rgba(0,0,0,0.684) 26.2%, rgba(0,0,0,0.768) 28.9%, rgba(0,0,0,0.844) 31.5%, rgba(0,0,0,0.908) 34.1%, rgba(0,0,0,0.957) 36.8%, rgba(0,0,0,0.989) 39.4%, rgba(0,0,0,1.000) 42.0%); }
+  .content { z-index: 1; }
   .content { grid-column: 1; grid-row: 1; justify-self: end; width: 100%; max-width: 620px;
     padding-left: max(48px, env(safe-area-inset-left, 0px)); padding-right: 48px; }
   .hero { min-height: auto; padding-block: 96px 24px; }
@@ -288,13 +295,6 @@ footer .names { font-family: var(--script); font-style: normal; color: var(--whi
           </div>
         </fieldset>
 
-        <div class="field" id="party-field" hidden>
-          <label for="rsvp-party">How many invited guests are in your party, including you?</label>
-          <select id="rsvp-party" name="party">
-            <option value="1">1</option><option value="2">2</option><option value="3">3</option>
-            <option value="4">4</option><option value="5">5</option><option value="6">6</option>
-          </select>
-        </div>
 
         <div class="field" id="plusone-field" hidden>
           <label class="check" for="rsvp-plusone"><input type="checkbox" id="rsvp-plusone" name="plusone" value="yes"><span>I'm bringing a plus-one</span></label>
@@ -306,7 +306,7 @@ footer .names { font-family: var(--script); font-style: normal; color: var(--whi
 
         <div class="field" id="diet-field" hidden>
           <label for="rsvp-diet">Dietary needs or allergies</label>
-          <p class="hint" id="rsvp-diet-hint">Optional. Include anyone in your party.</p>
+          <p class="hint" id="rsvp-diet-hint">Optional. Include your plus-one's needs too.</p>
           <textarea id="rsvp-diet" name="dietary" maxlength="500" aria-describedby="rsvp-diet-hint"></textarea>
         </div>
 
@@ -340,7 +340,6 @@ const RSVP_ENDPOINT = "https://script.google.com/macros/s/AKfycbzVrn41afgKJ_XTfC
   const form = document.getElementById("rsvp-form");
   const status = document.getElementById("rsvp-status");
   const submit = document.getElementById("rsvp-submit");
-  const partyField = document.getElementById("party-field");
   const dietField = document.getElementById("diet-field");
   const plusField = document.getElementById("plusone-field");
   const plusNameField = document.getElementById("plusone-name-field");
@@ -358,7 +357,6 @@ const RSVP_ENDPOINT = "https://script.google.com/macros/s/AKfycbzVrn41afgKJ_XTfC
   form.addEventListener("change", function (e) {
     if (e.target.name === "attending") {
       const yes = attendingValue() === "yes";
-      partyField.hidden = !yes;
       plusField.hidden = !yes;
       dietField.hidden = !yes;
     }
@@ -391,7 +389,7 @@ const RSVP_ENDPOINT = "https://script.google.com/macros/s/AKfycbzVrn41afgKJ_XTfC
     const data = new URLSearchParams({
       name: name,
       attending: attending,
-      party: attending === "yes" ? form.elements["party"].value : "0",
+      party: attending === "yes" ? "1" : "0",
       plusone: bringingPlusOne ? "yes" : "no",
       plusone_name: plusOneName,
       dietary: attending === "yes" ? form.elements["dietary"].value.trim() : "",
@@ -407,7 +405,7 @@ const RSVP_ENDPOINT = "https://script.google.com/macros/s/AKfycbzVrn41afgKJ_XTfC
       const first = name.split(/\s+/)[0];
       document.getElementById("thanks-title").textContent = "Thank you, " + first;
       document.getElementById("thanks-text").textContent = attending === "yes"
-        ? "Your RSVP is in for a party of " + (Number(form.elements["party"].value) + (bringingPlusOne ? 1 : 0)) + ". We can't wait to celebrate with you."
+        ? (bringingPlusOne ? "Your RSVP is in for you and " + plusOneName + "." : "Your RSVP is in.") + " We can't wait to celebrate with you."
         : "Your RSVP is in. Thank you for letting us know.";
       form.hidden = true;
       thanks.hidden = false;
