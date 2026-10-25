@@ -104,10 +104,12 @@ a:hover { color: var(--white); }
 .invite { font-style: italic; font-size: clamp(1.2rem, 4.6vw, 1.6rem); margin: 0; color: var(--cream); }
 h1 {
   font-family: var(--script); font-weight: 400; color: var(--white);
-  font-size: clamp(4.2rem, 18vw, 7.6rem); line-height: 1.04; margin: 22px 0 10px;
+  font-size: clamp(4.2rem, 18vw, 7.6rem); line-height: 1.2; margin: 22px 0 10px;
   letter-spacing: 0;
 }
-h1 span { display: block; }
+h1 span { display: block; white-space: nowrap; }
+/* desktop: names scale with the text column so "& Morgyn" never breaks onto a third line */
+@media (min-width: 1000px) { h1 { font-size: min(7.6rem, calc((48.78vw - 96px) / 3.95)); } }
 .date { font-weight: 600; color: var(--peach-lt); font-size: clamp(1.2rem, 4.6vw, 1.55rem); margin: 0; }
 .place-line { margin: 6px 0 0; font-style: italic; }
 @media (max-width: 999px) {
